@@ -2,24 +2,27 @@ package org.hhbgk.lifecycle.livedata.viewmodel;
 
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
 import org.hhbgk.lifecycle.livedata.viewmodel.bean.UserInfo;
 import org.hhbgk.lifecycle.livedata.viewmodel.livedata.UserLiveData;
+import org.hhbgk.lifecycle.livedata.viewmodel.viewmodel.DataRepository;
 import org.hhbgk.lifecycle.livedata.viewmodel.viewmodel.MainViewModel;
+
+import java.util.List;
 
 
 public class FirstFragment extends Fragment {
-
+    final String tag = getClass().getSimpleName();
     public static FirstFragment newInstance() {
         return new FirstFragment();
     }
@@ -37,7 +40,7 @@ public class FirstFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         MainViewModel viewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
-        final UserLiveData<UserInfo> userLiveData = viewModel.getUserLiveData();
+        final UserLiveData userLiveData = viewModel.getUserLiveData();
 
         final TextView textView = getView().findViewById(R.id.first_textId);
         textView.setOnClickListener(new View.OnClickListener() {
@@ -50,10 +53,22 @@ public class FirstFragment extends Fragment {
             }
         });
 
+        // method 1:
         userLiveData.observe(this, new Observer<UserInfo>() {
             @Override
             public void onChanged(UserInfo o) {
                 textView.setText("First fragment:" + o);
+            }
+        });
+
+        // method 2:
+        DataRepository.getInstance().getUsers().observe(getViewLifecycleOwner(), new Observer<List<UserInfo>>() {
+            @Override
+            public void onChanged(List<UserInfo> userInfos) {
+                Log.e(tag, "userInfos size=" + userInfos.size());
+                for (UserInfo userInfo : userInfos) {
+                    Log.i(tag, "username=" + userInfo.getName());
+                }
             }
         });
     }
