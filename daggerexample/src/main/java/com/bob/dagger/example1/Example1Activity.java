@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bob.dagger.MainApplication;
 import com.bob.dagger.R;
 import com.bob.dagger.example1.bean.UserLocalDataSource;
 
@@ -16,9 +17,12 @@ import javax.inject.Inject;
  */
 public class Example1Activity extends AppCompatActivity {
     private final String tag = getClass().getSimpleName();
-
+//-----------方式1 start-------------
     @Inject
     UserLocalDataSource userLocalDataSource;
+    @Inject
+    UserRepository userRepository;
+//-----------方式1 end-------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +31,26 @@ public class Example1Activity extends AppCompatActivity {
         TextView textView = findViewById(R.id.text);
         textView.setText("Example1");
 
-        ApplicationGraph applicationGraph = DaggerApplicationGraph.builder().build();
-        applicationGraph.inject(this);
-        UserRepository userRepository = applicationGraph.userRepository();
-        Log.i(tag, "userRepository=" + userRepository);
-        Log.i(tag, "userLocalDataSource=" + userLocalDataSource);
-        userRepository.setUserLocalDataSource();
+        MainApplication mainApplication = MainApplication.getApplication();
+//-----------方式1 start-------------
+        mainApplication.getApplicationGraph().inject(this);
+        if (userLocalDataSource != null) {
+            Log.i(tag, "userLocalDataSource=" + userLocalDataSource);
+        } else {
+            Log.e(tag, "userLocalDataSource is null");
+        }
+
+        if (userRepository != null) {
+            Log.i(tag, "userRepository=" + userRepository);
+        } else {
+            Log.e(tag, "userRepository is null");
+        }
+//-----------方式1 end-------------
+
+        //-----------方式2 start-------------
+//        UserRepository userRepository = mainApplication.getApplicationGraph().getUserRepository();
+//        Log.i(tag, "userRepository=" + userRepository);
+//        userRepository.setUserLocalDataSource();
+        //-----------方式2 end-------------
     }
 }

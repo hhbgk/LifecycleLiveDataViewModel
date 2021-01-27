@@ -1,5 +1,7 @@
 package com.bob.dagger.example1.bean;
 
+import android.util.Log;
+
 import javax.inject.Inject;
 
 /**
@@ -9,8 +11,9 @@ import javax.inject.Inject;
  * UpdateRemark:
  */
 public class UserRemoteDataSource {
+    final String tag = getClass().getSimpleName();
     @Inject
     public UserRemoteDataSource() {
-
+        Log.e(tag, "create " + tag);
     }
 }

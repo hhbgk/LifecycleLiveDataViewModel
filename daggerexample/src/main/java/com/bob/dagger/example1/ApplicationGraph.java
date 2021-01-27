@@ -10,6 +10,9 @@ import dagger.Component;
  */
 @Component
 public interface ApplicationGraph {
+    //方式1
     void inject(Example1Activity example1Activity);
-    UserRepository userRepository();
+    //方式2
+    UserRepository getUserRepository();
+
 }

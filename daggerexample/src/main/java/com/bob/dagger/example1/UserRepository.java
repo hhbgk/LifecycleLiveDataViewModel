@@ -20,6 +20,7 @@ public class UserRepository {
 
     @Inject
     public UserRepository(UserLocalDataSource userLocalDataSource, UserRemoteDataSource userRemoteDataSource) {
+        Log.e(tag, "Create UserRepository");
         this.userLocalDataSource = userLocalDataSource;
         this.userRemoteDataSource = userRemoteDataSource;
     }
