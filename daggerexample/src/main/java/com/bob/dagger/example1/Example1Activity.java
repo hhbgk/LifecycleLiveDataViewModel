@@ -11,6 +11,9 @@ import com.bob.dagger.example1.bean.UserLocalDataSource;
 
 import javax.inject.Inject;
 
+/**
+ * \@Inject + \@Component使用
+ */
 public class Example1Activity extends AppCompatActivity {
     private final String tag = getClass().getSimpleName();
 
