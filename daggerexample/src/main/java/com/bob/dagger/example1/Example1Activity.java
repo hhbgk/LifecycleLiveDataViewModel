@@ -2,6 +2,7 @@ package com.bob.dagger.example1;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +21,8 @@ public class Example1Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example1);
+        TextView textView = findViewById(R.id.text);
+        textView.setText("Example1");
 
         ApplicationGraph applicationGraph = DaggerApplicationGraph.builder().build();
         applicationGraph.inject(this);
