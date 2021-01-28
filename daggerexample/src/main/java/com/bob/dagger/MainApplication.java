@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.bob.dagger.example1.ApplicationGraph;
 import com.bob.dagger.example1.DaggerApplicationGraph;
+import com.bob.dagger.example3.di.DaggerExample3Component;
+import com.bob.dagger.example3.di.Example3Component;
 
 /**
  * Des:
@@ -15,12 +17,14 @@ public class MainApplication extends Application {
 
     private static MainApplication sApplication;
     private ApplicationGraph applicationGraph;
+    private Example3Component example3Component;
 
     @Override
     public void onCreate() {
         super.onCreate();
         sApplication = this;
         applicationGraph = DaggerApplicationGraph.create();
+        example3Component = DaggerExample3Component.create();
     }
 
     public static MainApplication getApplication() {
@@ -29,5 +33,9 @@ public class MainApplication extends Application {
 
     public ApplicationGraph getApplicationGraph() {
         return applicationGraph;
+    }
+
+    public Example3Component getExample3Component() {
+        return example3Component;
     }
 }
