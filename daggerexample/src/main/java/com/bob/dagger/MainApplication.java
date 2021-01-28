@@ -4,12 +4,6 @@ import android.app.Application;
 
 import com.bob.dagger.example1.ApplicationGraph;
 import com.bob.dagger.example1.DaggerApplicationGraph;
-import com.bob.dagger.example2.DaggerExample2Component;
-import com.bob.dagger.example2.Example2Component;
-
-import javax.inject.Inject;
-
-import dagger.android.DispatchingAndroidInjector;
 
 /**
  * Des:

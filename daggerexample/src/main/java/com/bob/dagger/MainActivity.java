@@ -22,4 +22,7 @@ public class MainActivity extends AppCompatActivity {
     public void onExample1(View view) {
         startActivity(new Intent(this, Example1Activity.class));
     }
+
+    public void onExample2(View view) {
+    }
 }
