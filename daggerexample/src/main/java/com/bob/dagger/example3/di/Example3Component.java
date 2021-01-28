@@ -2,7 +2,7 @@ package com.bob.dagger.example3.di;
 
 import android.content.Intent;
 
-import com.bob.dagger.example3.viewmodule.LoginViewModel;
+import com.bob.dagger.example3.viewmodule.DisplayViewModel;
 
 import javax.inject.Singleton;
 
@@ -17,6 +17,6 @@ import dagger.Component;
 @Singleton
 @Component(modules = IntentModule.class)
 public interface Example3Component {
-    LoginViewModel getLoginViewModel();
+    DisplayViewModel getLoginViewModel();
     Intent getIntent();
 }

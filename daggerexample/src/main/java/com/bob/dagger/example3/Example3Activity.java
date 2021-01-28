@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bob.dagger.MainApplication;
 import com.bob.dagger.R;
 import com.bob.dagger.example3.di.Example3Component;
-import com.bob.dagger.example3.viewmodule.LoginViewModel;
+import com.bob.dagger.example3.viewmodule.DisplayViewModel;
 
 import javax.inject.Inject;
 
@@ -22,9 +22,9 @@ public class Example3Activity extends AppCompatActivity {
     private final String tag = getClass().getSimpleName();
 
     @Inject
-    LoginViewModel loginViewModel;
+    DisplayViewModel displayViewModel;
     @Inject
-    LoginViewModel loginViewModel2;
+    DisplayViewModel displayViewModel2;
     @Inject
     Intent intent;
     @Inject
@@ -38,13 +38,13 @@ public class Example3Activity extends AppCompatActivity {
         textView.setText("Example3");
 
         Example3Component example2Component = MainApplication.getApplication().getExample3Component();
-        loginViewModel = example2Component.getLoginViewModel();
-        loginViewModel2 = example2Component.getLoginViewModel();
-        Log.e(tag, "LoginViewModel =" + loginViewModel);
-        Log.e(tag, "LoginViewModel2=" + loginViewModel2);
-        if (loginViewModel != null) {
-            loginViewModel.getUserRepository().setUserLocalDataSource();
-            loginViewModel.getUserRepository().setUserRemoteDataSource();
+        displayViewModel = example2Component.getLoginViewModel();
+        displayViewModel2 = example2Component.getLoginViewModel();
+        Log.e(tag, "displayViewModel =" + displayViewModel);
+        Log.e(tag, "displayViewModel2=" + displayViewModel2);
+        if (displayViewModel != null) {
+            displayViewModel.getUserRepository().setUserLocalDataSource();
+            displayViewModel.getUserRepository().setUserRemoteDataSource();
         } else {
             Log.e(tag, "LoginViewModel is null");
         }

@@ -12,12 +12,12 @@ import javax.inject.Singleton;
  * UpdateRemark:
  */
 @Singleton
-public class LoginViewModel {
+public class DisplayViewModel {
     private final UserRepository userRepository;
 
     // @Inject tells Dagger how to create instances of LoginViewModel
     @Inject
-    public LoginViewModel(UserRepository userRepository) {
+    public DisplayViewModel(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

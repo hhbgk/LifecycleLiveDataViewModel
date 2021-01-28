@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.bob.dagger.MainApplication;
 import com.bob.dagger.R;
 import com.bob.dagger.example3.di.Example3Component;
-import com.bob.dagger.example3.viewmodule.LoginViewModel;
+import com.bob.dagger.example3.viewmodule.DisplayViewModel;
 
 public class FirstFragment extends Fragment {
     private final String tag = getClass().getSimpleName();
@@ -28,13 +28,13 @@ public class FirstFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Example3Component example2Component = MainApplication.getApplication().getExample3Component();
-        LoginViewModel loginViewModel = example2Component.getLoginViewModel();
-        Log.e(tag, "LoginViewModel =" + loginViewModel);
-        if (loginViewModel != null) {
-            loginViewModel.getUserRepository().setUserLocalDataSource();
-            loginViewModel.getUserRepository().setUserRemoteDataSource();
+        DisplayViewModel displayViewModel = example2Component.getLoginViewModel();
+        Log.e(tag, "displayViewModel =" + displayViewModel);
+        if (displayViewModel != null) {
+            displayViewModel.getUserRepository().setUserLocalDataSource();
+            displayViewModel.getUserRepository().setUserRemoteDataSource();
         } else {
-            Log.e(tag, "LoginViewModel is null");
+            Log.e(tag, "displayViewModel is null");
         }
     }
 }
