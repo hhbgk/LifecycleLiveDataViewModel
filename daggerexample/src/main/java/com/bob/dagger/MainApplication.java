@@ -8,6 +8,14 @@ import com.bob.dagger.example3.di.DaggerExample3Component;
 import com.bob.dagger.example3.di.Example3Component;
 import com.bob.dagger.example4.di.DaggerExample4Component;
 import com.bob.dagger.example4.di.Example4Component;
+import com.bob.dagger.improve.DaggerAppComponent;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasAndroidInjector;
 
 /**
  * Des:
@@ -15,8 +23,9 @@ import com.bob.dagger.example4.di.Example4Component;
  * Date:21-1-26
  * UpdateRemark:
  */
-public class MainApplication extends Application {
-
+public class MainApplication extends DaggerApplication {
+    @Inject
+    DispatchingAndroidInjector<Object> dispatchingAndroidInjector;
     private static MainApplication sApplication;
     private ApplicationGraph applicationGraph;
     private Example3Component example3Component;
@@ -29,6 +38,11 @@ public class MainApplication extends Application {
         applicationGraph = DaggerApplicationGraph.create();
         example3Component = DaggerExample3Component.create();
         example4Component = DaggerExample4Component.create();
+    }
+
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return DaggerAppComponent.builder().application(this).create();
     }
 
     public static MainApplication getApplication() {
