@@ -1,21 +1,18 @@
 package com.bob.dagger;
 
-import android.app.Application;
-
 import com.bob.dagger.example1.ApplicationGraph;
 import com.bob.dagger.example1.DaggerApplicationGraph;
 import com.bob.dagger.example3.di.DaggerExample3Component;
 import com.bob.dagger.example3.di.Example3Component;
 import com.bob.dagger.example4.di.DaggerExample4Component;
 import com.bob.dagger.example4.di.Example4Component;
-import com.bob.dagger.improve.DaggerAppComponent;
+import com.bob.dagger.improve.di.DaggerAppComponent;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasAndroidInjector;
 
 /**
  * Des:

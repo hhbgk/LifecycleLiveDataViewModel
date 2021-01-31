@@ -1,7 +1,9 @@
 package com.bob.dagger.improve;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.bob.dagger.BaseActivity;
@@ -19,8 +21,16 @@ public class ImproveActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_improve);
         TextView textView = findViewById(R.id.text);
+        if (textView == null) Log.e(tag, "text view is null");
         textView.setText("Hello " + tag);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ImproveActivity.this, HelloActivity.class));
+            }
+        });
 
+        Log.e(tag, "userRepository=" + userRepository);
         if (userRepository != null) {
             userRepository.setUserLocalDataSource();
         } else {

@@ -1,4 +1,4 @@
-package com.bob.dagger.improve;
+package com.bob.dagger.improve.di;
 
 import android.app.Application;
 
