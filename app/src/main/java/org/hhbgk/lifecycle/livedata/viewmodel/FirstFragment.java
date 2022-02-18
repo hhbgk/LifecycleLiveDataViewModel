@@ -54,7 +54,7 @@ public class FirstFragment extends Fragment {
         });
 
         // method 1:
-        userLiveData.observe(this, new Observer<UserInfo>() {
+        userLiveData.observe(getViewLifecycleOwner(), new Observer<UserInfo>() {
             @Override
             public void onChanged(UserInfo o) {
                 textView.setText("First fragment:" + o);

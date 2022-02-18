@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import org.hhbgk.lifecycle.livedata.viewmodel.bean.UserInfo;
+import org.hhbgk.lifecycle.livedata.viewmodel.databinding.ActivityLiveBinding;
 import org.hhbgk.lifecycle.livedata.viewmodel.livedata.UserLiveData;
 import org.hhbgk.lifecycle.livedata.viewmodel.viewmodel.DataRepository;
 import org.hhbgk.lifecycle.livedata.viewmodel.viewmodel.MainViewModel;
@@ -19,11 +20,13 @@ import java.util.List;
 public class LiveActivity extends AppCompatActivity {
     final String tag = getClass().getSimpleName();
     private int counter;
+    private ActivityLiveBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_live);
+        binding = ActivityLiveBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         DataRepository.getInstance().getUsers().observe(this, new Observer<List<UserInfo>>() {
             @Override
@@ -43,15 +46,15 @@ public class LiveActivity extends AppCompatActivity {
             @Override
             public void onChanged(UserInfo userInfo) {
                 Log.e(tag, "UserInfo onChanged:" + userInfo);
+                binding.tvText.setText("UserInfo: " + userInfo);
             }
         });
 
-        Button button = findViewById(R.id.btn_live);
-        button.setOnClickListener(new View.OnClickListener() {
+        binding.btnLive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UserInfo userInfo = new UserInfo();
-                userInfo.setName("Live " + (counter++));
+                userInfo.setName("Live " + (++counter));
                 userInfo.setAge(counter);
                 userLiveData.setValue(userInfo);
             }

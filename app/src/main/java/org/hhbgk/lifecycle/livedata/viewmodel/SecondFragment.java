@@ -48,7 +48,7 @@ public class SecondFragment extends Fragment {
         MainViewModel viewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         final UserLiveData userInfoUserLiveData = viewModel.getUserLiveData();
 
-        userInfoUserLiveData.observe(this, new Observer<UserInfo>() {
+        userInfoUserLiveData.observe(getViewLifecycleOwner(), new Observer<UserInfo>() {
             @Override
             public void onChanged(UserInfo userInfo) {
                 textView.setText("Second Fragment:" + userInfo);
